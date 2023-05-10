@@ -11,3 +11,76 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.error {
+  color: rgb(179, 20, 20);
+}
+
+.searchfilter {
+  margin-bottom: 60px;
+  padding: 10px;
+  color: #3f51b5;
+  font-size: 14px;
+}
+
+.education-edit {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.education-fields {
+  padding: 25px;
+}
+.align-inline-box{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+  .pagination-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+  }
+  .MuiTableCell-head {
+    color: rgba(0, 0, 0, 0.87);
+    font-weight: 700;
+    line-height: 1.5rem;
+}
+.side-by-side{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.flex-right-button{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 120px;
+}
+.flex-right{
+  display: flex;
+  justify-content: flex-end;
+ 
+}
+.submission-message{
+  text-align: center;
+  margin-top: 150px;
+}
+.flex-right-button-education{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 250px;
+}
+.plus-fielarray-flex{
+  display: flex;
+}
+.success-message{
+  margin: auto;
+  display: block;
+}
