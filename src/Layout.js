@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import SearchFilter from './SearchFilter';
 import { NewListTable } from './NewListTable';
 import StepperContainer from './StepperContainer';
 import { Button, Modal, Box } from '@mui/material'
+import SearchFilter from './SearchFilterDebounce';
 function Layout() {
  
   const newList = [
@@ -128,7 +128,8 @@ function Layout() {
             </Box>
           </Modal>
         </div>
-        <SearchFilter setPage={setPage} filter={filter} setFilter={setFilter} />
+        {/* <SearchFilter setPage={setPage} filter={filter} setFilter={setFilter} /> */}
+        <SearchFilter setPage={setPage} filter={filter} setFilter={setFilter}/>
       </div>
 
       <NewListTable users={users} setUsers={setUsers} page={page} setPage={setPage} filteredList={filteredList} handleEdit={handleEdit} />
