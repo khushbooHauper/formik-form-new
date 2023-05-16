@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/khushbooHauper/formik-form-new.git/static/css/main.2f6696dc.css",
-    "main.js": "/khushbooHauper/formik-form-new.git/static/js/main.14c4f569.js",
-    "index.html": "/khushbooHauper/formik-form-new.git/index.html",
-    "main.2f6696dc.css.map": "/khushbooHauper/formik-form-new.git/static/css/main.2f6696dc.css.map",
-    "main.14c4f569.js.map": "/khushbooHauper/formik-form-new.git/static/js/main.14c4f569.js.map"
+    "main.css": "/formik-form-new/static/css/main.2f6696dc.css",
+    "main.js": "/formik-form-new/static/js/main.14c4f569.js",
+    "index.html": "/formik-form-new/index.html",
+    "main.2f6696dc.css.map": "/formik-form-new/static/css/main.2f6696dc.css.map",
+    "main.14c4f569.js.map": "/formik-form-new/static/js/main.14c4f569.js.map"
   },
   "entrypoints": [
     "static/css/main.2f6696dc.css",
