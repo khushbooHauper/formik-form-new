@@ -37,20 +37,23 @@ export const Experience3 = ({ formData, onError, onSuccess }) => {
     const { values, handleChange, touched, errors, isValid, handleBlur, setFieldValue, handleSubmit } = formik;
 
 
-
     useEffect(() => {
-
-        if (Object.keys(formik.values).length > 0) {
-            formik.validateForm().then((errors) => {
-                if (Object.keys(errors).length === 0) {
-                    onSuccess(formik.values, "Experience");
-                } else {
-                    onError(errors);
-                }
-            });
+        console.log(formik.values);
+        const isAnyArrayEmpty = Object.values(formik.values).some((value) => {
+          if (Array.isArray(value)) {
+            return value.length === 0;
+          }
+          return false;
+        });
+      
+        if (formik.isValid && !isAnyArrayEmpty) {
+          onSuccess(formik.values, 'Experience');
+        } else {
+          onError(formik.errors);
         }
-    }, [formik.values, formik.dirty, onSuccess, onError]);
-
+      }, [formik.isValid, formik.values, onSuccess, onError]);
+      
+    
 
 
     return (

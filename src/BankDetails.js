@@ -41,19 +41,26 @@ export const BankDetails = ({ formData, onError, onSuccess }) => {
 
 
 
+  
   useEffect(() => {
     console.log(formik.values)
-    if (Object.keys(formik.values).length > 0) {
-      formik.validateForm().then((errors) => {
-        if (Object.keys(errors).length === 0) {
-          onSuccess(formik.values, "BankDetails");
-        } else {
-          onError(errors);
-        }
-      });
+    if (formik.isValidating) {
+      // Form validation is in progress, do nothing
+      return;
     }
-  }, [formik.values, formik.dirty, onSuccess, onError]);
 
+    if (formik.isValid && !Object.values(formik.values).some((value) => value === '')) {
+      onSuccess(formik.values, 'BankDetails');
+    } else {
+      onError(formik.errors);
+    }
+  }, [formik.isValidating, formik.isValid, formik.values, onSuccess, onError]);
+
+   
+
+
+
+  
   return (
     <form onSubmit={formik.handleSubmit}>
       <Grid container spacing={3} style={{ marginTop: "10px" }}>

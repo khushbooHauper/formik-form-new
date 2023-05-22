@@ -48,18 +48,24 @@ export const Education2 = ({ formData, onError, onSuccess }) => {
 
 
   useEffect(() => {
-    console.log(formik.values)
-    if (Object.keys(formik.values).length > 0) {
-      formik.validateForm().then((errors) => {
-        if (Object.keys(errors).length === 0) {
-          onSuccess(formik.values, "Education");
-        } else {
-          onError(errors);
-        }
-      });
+    console.log(formik.values);
+    const isAnyArrayEmpty = Object.values(formik.values).some((value) => {
+      if (Array.isArray(value)) {
+        return value.length === 0;
+      }
+      return false;
+    });
+  
+    if (formik.isValid && !isAnyArrayEmpty) {
+      onSuccess(formik.values, 'Education');
+    } else {
+      onError(formik.errors);
     }
-  }, [formik.values, formik.dirty, onSuccess, onError]);
+  }, [formik.isValid, formik.values, onSuccess, onError]);
+  
 
+
+  
   return (
     <form onSubmit={handleSubmit}>
       <Formik>
