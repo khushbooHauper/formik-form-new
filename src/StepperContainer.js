@@ -88,7 +88,7 @@ export default function StepperContainer({ addUser, handleClose, id, curUser }) 
                     );
                 })}
             </Stepper>
-            <Box sx={{ height: 400, maxWidth: 600, width: '100%', overflowY: 'auto', display: 'flex', alignContent: 'center', marginTop: 5 }}>
+            <Box sx={{ height: 300, maxHeight: 300, maxWidth: 600, width: '100%', overflowY: 'auto', paddingTop: 5, display: 'flex', alignContent: 'center', marginTop: 5 }}>
                 {(() => {
                     switch (activeStep) {
                         case 0:

@@ -18,26 +18,38 @@ export const BankDetails = ({ formData, onError, onSuccess }) => {
   const formik = useFormik({
     initialValues: formData || initialValues,
     validationSchema: Yup.object({
-      bank: Yup.string().required("Bank name is required"),
+      bank: Yup.string()
+        .required('Bank Name is required')
+        .matches(/^[A-Za-z\s]+$/, 'Bank Name should only contain letters and spaces')
+        .min(3, 'Bank Name should be at least 3 characters')
+        .max(50, 'Bank Name should not exceed 50 characters'),
       accountNumber: Yup.string()
-        .required("Account number is required")
-        .matches(/^[0-9]*$/, "Account number should only contain digits"),
-      ifsc: Yup.string().required("IFSC code is required"),
+        .required('Account Number is required')
+        .matches(/^\d{6,12}$/, 'Account Number should be a numeric value between 6 and 12 digits'),
+      ifsc: Yup.string()
+        .required('ifsc code is required')
+        .matches(/^[A-Za-z0-9]+$/, 'ifsc code should only contain letters and numbers')
+        .min(6, 'ifsc code should be at least 6 characters')
+        .max(20, 'ifsc code should not exceed 20 characters'),
       panCard: Yup.string()
-        .required("PAN number is required")
+        .required('PAN Card Number is required')
+        .matches(/^([A-Z]){5}([0-9]){4}([A-Z]){1}$/, 'Invalid PAN Card Number format'),
 
     }),
 
   });
 
 
+ 
   useEffect(() => {
-    if (formik.dirty && formik.isValid) {
-      onSuccess(formik.values, "BankDetails")
-    } else {
-      onError(formik.errors)
-    }
-  }, [formik])
+    formik.validateForm().then((errors) => {
+      if (Object.keys(errors).length === 0) {
+        onSuccess(formik.values, "BankDetails");
+      } else {
+        onError(errors);
+      }
+    });
+  }, [formik.values, formik.dirty, onSuccess, onError]);
 
   return (
     <form onSubmit={formik.handleSubmit}>
