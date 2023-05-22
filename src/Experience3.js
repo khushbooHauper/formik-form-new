@@ -36,17 +36,20 @@ export const Experience3 = ({ formData, onError, onSuccess }) => {
 
     const { values, handleChange, touched, errors, isValid, handleBlur, setFieldValue, handleSubmit } = formik;
 
+
+
     useEffect(() => {
-        formik.validateForm().then((errors) => {
-          if (Object.keys(errors).length === 0) {
-            onSuccess(formik.values, "Experience");
-          } else {
-            onError(errors);
-          }
-        });
-      }, [formik.values, formik.dirty, onSuccess, onError]);
-    
-    
+
+        if (Object.keys(formik.values).length > 0) {
+            formik.validateForm().then((errors) => {
+                if (Object.keys(errors).length === 0) {
+                    onSuccess(formik.values, "Experience");
+                } else {
+                    onError(errors);
+                }
+            });
+        }
+    }, [formik.values, formik.dirty, onSuccess, onError]);
 
 
 

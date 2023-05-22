@@ -45,17 +45,20 @@ export const Education2 = ({ formData, onError, onSuccess }) => {
 
   const { values, handleChange, touched, errors, isValid, handleBlur, setFieldValue, handleSubmit } = formik;
 
-  useEffect(() => {
-    formik.validateForm().then((errors) => {
-      if (Object.keys(errors).length === 0) {
-        onSuccess(formik.values, "Education");
-      } else {
-        onError(errors);
-      }
-    });
-  }, [formik.values, formik.dirty, onSuccess, onError]);
 
- 
+
+  useEffect(() => {
+    console.log(formik.values)
+    if (Object.keys(formik.values).length > 0) {
+      formik.validateForm().then((errors) => {
+        if (Object.keys(errors).length === 0) {
+          onSuccess(formik.values, "Education");
+        } else {
+          onError(errors);
+        }
+      });
+    }
+  }, [formik.values, formik.dirty, onSuccess, onError]);
 
   return (
     <form onSubmit={handleSubmit}>

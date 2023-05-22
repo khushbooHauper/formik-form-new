@@ -57,16 +57,22 @@ export const PersonalDetails = ({ formData, onError, onSuccess }) => {
 
 
 
-  
+
   useEffect(() => {
-    formik.validateForm().then((errors) => {
-      if (Object.keys(errors).length === 0) {
-        onSuccess(formik.values, "personalDetails");
-      } else {
-        onError(errors);
-      }
-    });
+    console.log(formik.values)
+    if (Object.keys(formik.values).length > 0) {
+      formik.validateForm().then((errors) => {
+        if (Object.keys(errors).length === 0) {
+          onSuccess(formik.values, "personalDetails");
+        } else {
+          onError(errors);
+        }
+      });
+    }
   }, [formik.values, formik.dirty, onSuccess, onError]);
+
+
+
 
 
 
