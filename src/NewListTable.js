@@ -73,8 +73,8 @@ export const NewListTable = ({ users, setUsers, page, setPage, filteredList, han
                                 <TableCell>{user.Education.education && user.Education.education.map((edu, index) => <p key={index}>{edu.courseName}</p>)}</TableCell>
                                 <TableCell>{user.Experience.experience && user.Experience.experience.map((exp, index) => <p key={index}>{exp.company}</p>)}</TableCell>
                                 <TableCell>
-                                    <EditIcon onClick={() => handleEdit(user)} style={{ color: '#303f9f' }} />
-                                    <DeleteIcon onClick={() => handleDelete(user)} style={{ color: '#ab2424' }} />
+                                    <EditIcon onClick={() => handleEdit(user)} style={{ color: '#303f9f' ,cursor:'pointer'}} />
+                                    <DeleteIcon onClick={() => handleDelete(user)} style={{ color: '#ab2424',cursor:'pointer' }} />
                                 </TableCell>
                             </TableRow>
                         ))}

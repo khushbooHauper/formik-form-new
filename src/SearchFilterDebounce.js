@@ -7,7 +7,7 @@ function SearchFilter({ setPage, filter, setFilter }) {
   const handleFilterChange = debounce((value) => {
     setFilter(value);
     setPage(1);
-  }, 300); // debounce delay 
+  }, 1000); // debounce delay 
 
   const handleInputChange = (event) => {
     const value = event.target.value;

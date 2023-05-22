@@ -48,12 +48,14 @@ export const Education2 = ({ formData, onError, onSuccess }) => {
 
 
   useEffect(() => {
-    console.log(formik.values);
-    const isAnyArrayEmpty = Object.values(formik.values).some((value) => {
-      if (Array.isArray(value)) {
-        return value.length === 0;
-      }
-      return false;
+    
+    const isAnyArrayEmpty = formik.values.education.some((education) => {
+      return (
+        !education.courseName ||
+        !education.university ||
+        !education.percentage ||
+        !education.passingYear
+      );
     });
   
     if (formik.isValid && !isAnyArrayEmpty) {
@@ -63,6 +65,7 @@ export const Education2 = ({ formData, onError, onSuccess }) => {
     }
   }, [formik.isValid, formik.values, onSuccess, onError]);
   
+
 
 
   

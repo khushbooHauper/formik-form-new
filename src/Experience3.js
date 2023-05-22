@@ -38,12 +38,14 @@ export const Experience3 = ({ formData, onError, onSuccess }) => {
 
 
     useEffect(() => {
-        console.log(formik.values);
-        const isAnyArrayEmpty = Object.values(formik.values).some((value) => {
-          if (Array.isArray(value)) {
-            return value.length === 0;
-          }
-          return false;
+    
+        const isAnyArrayEmpty = formik.values.experience.some((experience) => {
+          return (
+            !experience.company ||
+            !experience.designation ||
+            !experience.joiningDate ||
+            !experience.leavingDate
+          );
         });
       
         if (formik.isValid && !isAnyArrayEmpty) {
@@ -52,7 +54,6 @@ export const Experience3 = ({ formData, onError, onSuccess }) => {
           onError(formik.errors);
         }
       }, [formik.isValid, formik.values, onSuccess, onError]);
-      
     
 
 

@@ -43,7 +43,7 @@ export const BankDetails = ({ formData, onError, onSuccess }) => {
 
   
   useEffect(() => {
-    console.log(formik.values)
+    
     if (formik.isValidating) {
       // Form validation is in progress, do nothing
       return;
