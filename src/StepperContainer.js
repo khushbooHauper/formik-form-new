@@ -74,7 +74,7 @@ export default function StepperContainer({ addUser, handleClose, id, curUser }) 
 
 
     return (
-        <Box sx={{ width: '100%' }}>
+        <Box sx={{ width: '100%',overflowY:'auto',maxHeight:500 }}>
             <Stepper activeStep={activeStep}>
                 {steps.map((label, index) => {
                     const stepProps = {};
@@ -88,7 +88,7 @@ export default function StepperContainer({ addUser, handleClose, id, curUser }) 
                     );
                 })}
             </Stepper>
-            <Box sx={{ height: 300, maxHeight: 300, maxWidth: 600, width: '100%', overflowY: 'auto', paddingTop: 5, display: 'flex', alignContent: 'center', marginTop: 5 }}>
+            <Box sx={{ minHeight:'400px',overflowY: 'auto'}} >
                 {(() => {
                     switch (activeStep) {
                         case 0:
@@ -140,7 +140,7 @@ export default function StepperContainer({ addUser, handleClose, id, curUser }) 
                         <Box sx={{ flex: '1 1 auto' }} />
 
 
-                        <Button onClick={handleNext} disabled={!allowedNext}>
+                        <Button onClick={handleNext} disabled={!allowedNext} color="inherit">
                             {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                         </Button>
                     </Box>

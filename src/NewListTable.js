@@ -3,6 +3,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import { Pagination } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import moment from 'moment';
 
 
 export const NewListTable = ({ users, setUsers, page, setPage, filteredList, handleEdit }) => {
@@ -44,7 +45,7 @@ export const NewListTable = ({ users, setUsers, page, setPage, filteredList, han
         <>
 
 
-            <TableContainer component={Paper}>
+            {/* <TableContainer component={Paper}>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -93,10 +94,46 @@ export const NewListTable = ({ users, setUsers, page, setPage, filteredList, han
                     </Modal>
                 )}
 
-            </TableContainer>
+            </TableContainer> */}
+            <div class="container">
+                
+                <ul class="responsive-table">
+                    <li class="table-header">
+                        <div class="col col-1">Job Id</div>
+                        <div class="col col-2">Employee Name</div>
+                        <div class="col col-3">Age</div>
+                        <div class="col col-4">Gender</div>
+                        <div class="col col-5">Email</div>
+                        <div class="col col-6">Phone</div>
+                        <div class="col col-7">City</div>
+                        <div class="col col-8">State</div>
+                        <div class="col col-9">Country</div>
+                        <div class="col col-10">Pincode</div>
+                        <div class="col col-11">Actions</div>
+                    </li>
+                    {filteredList && filteredList.slice(startIndex, endIndex).map((user, index) => (
+                        <li class="table-row">
+                            <div class="col col-1" data-label="Job Id">{user.id}</div>
+                            <div class="col col-2" data-label="Employee Name">{user.PersonalDetails.firstName}  {user.PersonalDetails.lastName}</div>
+                            <div class="col col-3" data-label="age">{moment().diff(user.PersonalDetails.dob, 'years')}</div>
+                            <div class="col col-4" data-label="gender">{user.PersonalDetails.gender}</div>
+                            <div class="col col-5" data-label="Email">{user.PersonalDetails.email}</div>
+                            <div class="col col-6" data-label="Phone Number">{user.PersonalDetails.phone}</div>
+                            <div class="col col-7" data-label="City">{user.PersonalDetails.city}</div>
+                            <div class="col col-8" data-label="State">{user.PersonalDetails.state}</div>
+                            <div class="col col-9" data-label="Country">{user.PersonalDetails.country}</div>
+                            <div class="col col-10" data-label="Pincode">{user.PersonalDetails.pincode}</div>
+                            <div class="col col-11" data-label="Actions">
+                                <EditIcon onClick={() => handleEdit(user)} style={{ color: '#303f9f', cursor: 'pointer' }} />
+                                <DeleteIcon onClick={() => handleDelete(user)} style={{ color: '#33cdd8', cursor: 'pointer' }} />
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            </div>
 
             <div className='pagination-container'>
-                <Pagination count={Math.ceil(users.length / ITEMS_PER_PAGE)} page={page} onChange={handleChangePage} color="secondary" />
+                <Pagination count={Math.ceil(users.length / ITEMS_PER_PAGE)} page={page} onChange={handleChangePage} style={{ color: '#303f9f', cursor: 'pointer' }} />
 
             </div>
         </>

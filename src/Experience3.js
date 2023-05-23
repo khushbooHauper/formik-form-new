@@ -1,4 +1,4 @@
-import { Button, Grid, IconButton, TextField } from '@mui/material';
+import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
 import { Formik, Form, FieldArray, Field, useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Add as AddIcon, Remove as RemoveIcon } from "@mui/icons-material";
@@ -60,7 +60,7 @@ export const Experience3 = ({ formData, onError, onSuccess }) => {
     return (
         <form onSubmit={handleSubmit}>
             <Formik>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} style={{ marginTop: "40px" ,padding:'20px'}}>
                     <Grid item sm={11}>
                         <FieldArray
                             name="experience"
@@ -70,6 +70,9 @@ export const Experience3 = ({ formData, onError, onSuccess }) => {
                                     <div>
                                         {values.experience.map((experience, index) => (
                                             <Grid container key={index} spacing={2}>
+                                                <Grid  item xs={12}>
+                                                <Typography variant='h6'>{values.experience[index].designation}</Typography>
+                                                </Grid>
                                                 <Grid item xs={6}>
                                                     <TextField
                                                         fullWidth
