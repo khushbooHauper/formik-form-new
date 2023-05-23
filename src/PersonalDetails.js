@@ -45,7 +45,7 @@ lastName: Yup.string()
   .required('Date of Birth is required')
   .min(moment().subtract(60, 'years'), 'Date of Birth should be at most 60 years ago')
   .max(moment().subtract(18, 'years'), 'Date of Birth should be at least 18 years ago'),
-  gender:Yup.string() .required('gender is required')
+  gender:Yup.string().required('gender is required')
 });
 const initialValues = {
   firstName: "",
