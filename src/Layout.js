@@ -103,60 +103,66 @@ import moment from 'moment';
     cursor: 'pointer',
     color: 'white',
     padding: '8px 40px',
-    marginLeft: '296px'
+    marginLeft: '297px'
   };
 
   const centeredButtonStyle = {
-    background: 'white',
-    cursor: 'pointer',
-    color: '#303f9f',
-    padding: '8px 40px',
-    // display: 'block',
-    // margin: 'auto',
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    fontWeight: 'bold'
+    // background: 'white',
+    // cursor: 'pointer',
+    // color: '#303f9f',
+    // padding: '8px 40px',
+    // fontWeight: 'bold',
+    display: 'none'
   };
 
   return (
-    <div class="container">
-      {!isButtonClicked && (<div style={{ position: 'relative', display: 'inline-block' }} >
-        <img src={People} alt="Your Image" style={{ width: '700px', borderRadius: '10px' }} />
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', borderRadius: '10px' }}></div>
-      </div>
-      )}
-      <h2>{isButtonClicked && 'Employee List'}</h2>
-      <div>
+    <div className="container">
+    <h2>{isButtonClicked && 'Employee List'}</h2>
+    <div>
 
-        <div className='align-inline-box'>
-          <div>
-            {showFilter && <SearchFilter setPage={setPage} filter={filter} setFilter={setFilter} />}
-          </div>
+      <div className='align-inline-box'>
+        <div>
+          {showFilter && <SearchFilter setPage={setPage} filter={filter} setFilter={setFilter} />}
+        </div>
 
-          <div>
-            <div style={{ width: '1000px' }}>
-              <Button onClick={handleAddUserClick} style={isButtonClicked ? buttonStyle : centeredButtonStyle}>Add Employee</Button>
-            </div>
+        <div>
+          <div style={{ width: '1000px', display: 'flex', justifyContent: 'center' }}>
+            {!isButtonClicked && (<div className="jumbotron">
+              <div className="container">
+                <div className="main">
+                  <h1>We are Hiring</h1>
+                  <a href="#" className="btn-main" onClick={handleAddUserClick}>Add Employee</a>
 
-            <Modal
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-              sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                </div>
+              </div>
+            </div>)}
+            <Button
+              onClick={handleAddUserClick}
+              variant="contained"
+              style={isButtonClicked ? buttonStyle : centeredButtonStyle}
+              className="btn-main"
             >
-              <Box sx={style}>
-                <StepperContainer addUser={addUser} handleClose={handleClose} id={users.length} curUser={default_record} />
-              </Box>
-            </Modal>
+              Add Employee
+            </Button>
           </div>
+
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+          >
+            <Box sx={style}>
+              <StepperContainer addUser={addUser} handleClose={handleClose} id={users.length} curUser={default_record} />
+            </Box>
+          </Modal>
         </div>
       </div>
-
-      {showTable && <NewListTable users={users} setUsers={setUsers} page={page} setPage={setPage} filteredList={filteredList} handleEdit={handleEdit} />}
     </div>
+
+    {showTable && <NewListTable users={users} setUsers={setUsers} page={page} setPage={setPage} filteredList={filteredList} handleEdit={handleEdit} />}
+  </div>
   )
 }
 
