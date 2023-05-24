@@ -8,11 +8,11 @@ const validationSchema = Yup.object({
   firstName: Yup.string()
     .required('First Name is required').min(2, 'First Name should be at least 2 characters')
     .max(50, 'First Name should not exceed 50 characters')
-    .matches(/^[^\d\s]+$/, 'First Name should not contain numbers'),
+    .matches(/^[^\d]+$/, 'First Name should not contain numbers'),
   lastName: Yup.string()
     .required('Last Name is required').min(2, 'First Name should be at least 2 characters')
     .max(50, 'First Name should not exceed 50 characters')
-    .matches(/^[^\d\s]+$/, 'Last Name should not contain numbers'),
+    .matches(/^[^\d]+$/, 'Last Name should not contain numbers'),
   email: Yup.string()
     .email('Invalid email format')
     .required('Email is required')
@@ -28,19 +28,21 @@ const validationSchema = Yup.object({
     ),
   address: Yup.string().required('Address is required'),
   city: Yup.string()
-    .required('city is required').min(2, 'city should be at least 2 characters')
-    .max(50, 'city should not exceed 50 characters')
-    .matches(/^[^\d\s]+$/, 'city should not contain numbers'),
+  .required('City is required')
+  .min(2, 'City should be at least 2 characters')
+  .max(50, 'City should not exceed 50 characters')
+  .matches(/^[^\d]+$/, 'City should not contain numbers'),
+
   state: Yup.string()
     .required('state is required').min(2, 'state should be at least 2 characters')
     .max(50, 'state should not exceed 50 characters')
-    .matches(/^[^\d\s]+$/, 'state should not contain numbers'),
+    .matches(/^[^\d]+$/, 'state should not contain numbers'),
   pincode: Yup.string()
     .matches(/^\d{6}$/, 'pincode must be a 6-digit number')
     .required('pincode is required'),
   country: Yup.string()
     .required('country is required')
-    .matches(/^[^\d\s]+$/, 'country name should not contain numbers'),
+    .matches(/^[^\d]+$/, 'country name should not contain numbers'),
   dob: Yup.date()
     .required('Date of Birth is required')
     .min(moment().subtract(60, 'years'), 'Date of Birth should be at most 60 years ago')
