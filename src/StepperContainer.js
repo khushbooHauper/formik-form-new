@@ -125,7 +125,7 @@ export default function StepperContainer({ addUser, handleClose, id, curUser }) 
 
                     <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                         <Button
-                            color="inherit"
+                            variant='contained'
                             disabled={activeStep === 0}
                             onClick={handleBack}
                             sx={{ mr: 1 }}
@@ -135,7 +135,7 @@ export default function StepperContainer({ addUser, handleClose, id, curUser }) 
                         <Box sx={{ flex: '1 1 auto' }} />
 
 
-                        <Button onClick={handleNext} disabled={!allowedNext} color="inherit">
+                        <Button onClick={handleNext} disabled={!allowedNext} variant='contained'>
                             {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                         </Button>
                     </Box>
