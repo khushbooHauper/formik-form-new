@@ -51,8 +51,6 @@ export default function StepperContainer({ addUser, handleClose, id, curUser }) 
 
     ///+++++
 
-
-
     const handleNext = () => {
         if (allowedNext) {
             if (activeStep === steps.length - 1) {
@@ -70,11 +68,8 @@ export default function StepperContainer({ addUser, handleClose, id, curUser }) 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
-
-
-
     return (
-        <Box sx={{ width: '100%',overflowY:'auto',maxHeight:500 }}>
+        <Box sx={{ width: '100%', overflowY: 'auto', maxHeight: 500 }}>
             <Stepper activeStep={activeStep}>
                 {steps.map((label, index) => {
                     const stepProps = {};
@@ -88,7 +83,7 @@ export default function StepperContainer({ addUser, handleClose, id, curUser }) 
                     );
                 })}
             </Stepper>
-            <Box sx={{ minHeight:'400px',overflowY: 'auto'}} >
+            <Box sx={{ minHeight: '400px', overflowY: 'auto' }} >
                 {(() => {
                     switch (activeStep) {
                         case 0:

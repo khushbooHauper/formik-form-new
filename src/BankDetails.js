@@ -11,9 +11,6 @@ const initialValues = {
   panCard: "",
 
 };
-
-
-
 export const BankDetails = ({ formData, onError, onSuccess }) => {
   const formik = useFormik({
     initialValues: formData || initialValues,
@@ -36,14 +33,9 @@ export const BankDetails = ({ formData, onError, onSuccess }) => {
         .matches(/^([A-Z]){5}([0-9]){4}([A-Z]){1}$/, 'Invalid PAN Card Number format'),
 
     }),
-
   });
 
-
-
-  
   useEffect(() => {
-    
     if (formik.isValidating) {
       // Form validation is in progress, do nothing
       return;
@@ -56,11 +48,6 @@ export const BankDetails = ({ formData, onError, onSuccess }) => {
     }
   }, [formik.isValidating, formik.isValid, formik.values, onSuccess, onError]);
 
-   
-
-
-
-  
   return (
     <form onSubmit={formik.handleSubmit}>
       <Grid container spacing={3} style={{ marginTop: "10px" }}>

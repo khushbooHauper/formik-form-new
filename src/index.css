@@ -153,15 +153,15 @@ h2 small {
 }
 
 .responsive-table .col-6 {
-  flex-basis: 5%;
+  flex-basis: 10%;
 }
 
 .responsive-table .col-7 {
-  flex-basis: 5%;
+  flex-basis: 10%;
 }
 
 .responsive-table .col-8 {
-  flex-basis: 10%;
+  flex-basis: 7%;
 }
 
 .responsive-table .col-9 {

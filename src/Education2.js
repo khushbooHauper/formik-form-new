@@ -44,11 +44,7 @@ export const Education2 = ({ formData, onError, onSuccess }) => {
   });
 
   const { values, handleChange, touched, errors, isValid, handleBlur, setFieldValue, handleSubmit } = formik;
-
-
-
   useEffect(() => {
-    
     const isAnyArrayEmpty = formik.values.education.some((education) => {
       return (
         !education.courseName ||
@@ -57,22 +53,17 @@ export const Education2 = ({ formData, onError, onSuccess }) => {
         !education.passingYear
       );
     });
-  
+
     if (formik.isValid && !isAnyArrayEmpty) {
       onSuccess(formik.values, 'Education');
     } else {
       onError(formik.errors);
     }
   }, [formik.isValid, formik.values, onSuccess, onError]);
-  
-
-
-
-  
   return (
     <form onSubmit={handleSubmit}>
       <Formik>
-        <Grid container spacing={2} style={{ marginTop: "40px" ,padding:'20px'}}>
+        <Grid container spacing={2} style={{ marginTop: "40px", padding: '20px' }}>
           <Grid item sm={11}>
             <FieldArray
               name="education"
@@ -82,10 +73,10 @@ export const Education2 = ({ formData, onError, onSuccess }) => {
                   <div >
                     {values.education && values.education.map((education, index) => (
                       <Grid container key={index} spacing={2}  >
-                        <Grid  item xs={12}>
+                        <Grid item xs={12}>
                           <Typography variant='h6'>{values.education[index].courseName}</Typography>
                         </Grid>
-                       
+
                         <Grid item xs={6}>
                           <TextField
                             fullWidth

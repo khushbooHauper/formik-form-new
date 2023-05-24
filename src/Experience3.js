@@ -27,7 +27,6 @@ const initialValues = {
     experience: [{ company: "", designation: "", joiningDate: "", leavingDate: "" }]
 };
 export const Experience3 = ({ formData, onError, onSuccess }) => {
-
     const formik = useFormik({
         initialValues: formData || initialValues,
         validationSchema: validationSchema,
@@ -35,32 +34,26 @@ export const Experience3 = ({ formData, onError, onSuccess }) => {
     });
 
     const { values, handleChange, touched, errors, isValid, handleBlur, setFieldValue, handleSubmit } = formik;
-
-
     useEffect(() => {
-    
         const isAnyArrayEmpty = formik.values.experience.some((experience) => {
-          return (
-            !experience.company ||
-            !experience.designation ||
-            !experience.joiningDate ||
-            !experience.leavingDate
-          );
+            return (
+                !experience.company ||
+                !experience.designation ||
+                !experience.joiningDate ||
+                !experience.leavingDate
+            );
         });
-      
+
         if (formik.isValid && !isAnyArrayEmpty) {
-          onSuccess(formik.values, 'Experience');
+            onSuccess(formik.values, 'Experience');
         } else {
-          onError(formik.errors);
+            onError(formik.errors);
         }
-      }, [formik.isValid, formik.values, onSuccess, onError]);
-    
-
-
+    }, [formik.isValid, formik.values, onSuccess, onError]);
     return (
         <form onSubmit={handleSubmit}>
             <Formik>
-                <Grid container spacing={2} style={{ marginTop: "40px" ,padding:'20px'}}>
+                <Grid container spacing={2} style={{ marginTop: "40px", padding: '20px' }}>
                     <Grid item sm={11}>
                         <FieldArray
                             name="experience"
@@ -70,8 +63,8 @@ export const Experience3 = ({ formData, onError, onSuccess }) => {
                                     <div>
                                         {values.experience.map((experience, index) => (
                                             <Grid container key={index} spacing={2}>
-                                                <Grid  item xs={12}>
-                                                <Typography variant='h6'>{values.experience[index].designation}</Typography>
+                                                <Grid item xs={12}>
+                                                    <Typography variant='h6'>{values.experience[index].designation}</Typography>
                                                 </Grid>
                                                 <Grid item xs={6}>
                                                     <TextField
