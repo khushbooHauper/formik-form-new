@@ -5,37 +5,8 @@ import { Button, Modal, Box } from '@mui/material'
 import SearchFilter from './SearchFilterDebounce';
 import People from './people.png'
 import moment from 'moment';
-function Layout() {
- 
-  // const newList = [
-  //   {
-  //     PersonalDetails: {
-  //       address: "gota",
-  //       city: "rajkot",
-  //       email: "j@gmail.com",
-  //       firstName: "jiya",
-  //       lastName: "thakar",
-  //       phone: 9414896734,
-  //       state: "ahmedabad",
-  //       country:"india",
-  //       pincode:327001
-  //     },
-  //     BankDetails: {
-  //       bank: "hdfc",
-  //       accountNumber: 8738273923923,
-  //       ifsc: "HGG577H",
-  //       panCard: "ABCD1234F",
 
-  //     },
-  //     Education: {
-  //       education: [{ courseName: "IIT", university: "GTU", percentage: '78', passingYear: '2008' }]
-  //     },
-  //     Experience: {
-  //       experience: [{ company: "Microsoft", designation: "Engineer", joiningDate: "2018-08-28", leavingDate: "2018-08-28" }]
-  //     },
-  //     id: 1
-  //   }
-  // ]
+ function Layout() {
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [filter, setFilter] = useState("");
@@ -62,24 +33,24 @@ function Layout() {
     bgcolor: 'background.paper',
     boxShadow: 24,
     p: 5,
-    height:490,
+    height: 490,
     // overflowY: 'auto',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius:5
+    borderRadius: 5
   };
-  
+
 
   const filteredList = users && users.filter((user) => {
     const personalDetails = user.PersonalDetails;
     const age = moment().diff(personalDetails.dob, 'years');
-  
+
     return Object.values(personalDetails).some((value) =>
       value && value.toString().toLowerCase().includes(filter.toLowerCase())
     ) || age.toString().toLowerCase().includes(filter.toLowerCase());
   });
-  
+
 
 
   useEffect(() => {
@@ -134,7 +105,7 @@ function Layout() {
     padding: '8px 40px',
     marginLeft: '296px'
   };
-  
+
   const centeredButtonStyle = {
     background: 'white',
     cursor: 'pointer',
@@ -146,45 +117,45 @@ function Layout() {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    fontWeight:'bold'
+    fontWeight: 'bold'
   };
 
   return (
     <div class="container">
-      {!isButtonClicked && (<div style={{position: 'relative', display: 'inline-block'}} >
-  <img src={People} alt="Your Image" style={{width: '700px', borderRadius: '10px'}}/>
-  <div style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', borderRadius: '10px'}}></div>
-</div>
-)}
-      <h2>{ isButtonClicked && 'Employee List' }</h2>
-    <div>
-      
-            <div className='align-inline-box'>
-                    <div>
-                   {showFilter && <SearchFilter setPage={setPage} filter={filter} setFilter={setFilter}/>}
-                    </div>
-                      
-                      <div>
-                        <div style={{width:'1000px'}}>
-                        <Button onClick={handleAddUserClick}  style={isButtonClicked ? buttonStyle : centeredButtonStyle}>Add Employee</Button>
-                        </div>
-                        
-                        <Modal
-                          open={open}
-                          onClose={handleClose}
-                          aria-labelledby="modal-modal-title"
-                          aria-describedby="modal-modal-description"
-                          sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}
-                        >
-                          <Box sx={style}>
-                            <StepperContainer addUser={addUser} handleClose={handleClose} id={users.length} curUser={default_record} />
-                          </Box>
-                        </Modal>
-                      </div>
+      {!isButtonClicked && (<div style={{ position: 'relative', display: 'inline-block' }} >
+        <img src={People} alt="Your Image" style={{ width: '700px', borderRadius: '10px' }} />
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', borderRadius: '10px' }}></div>
+      </div>
+      )}
+      <h2>{isButtonClicked && 'Employee List'}</h2>
+      <div>
+
+        <div className='align-inline-box'>
+          <div>
+            {showFilter && <SearchFilter setPage={setPage} filter={filter} setFilter={setFilter} />}
+          </div>
+
+          <div>
+            <div style={{ width: '1000px' }}>
+              <Button onClick={handleAddUserClick} style={isButtonClicked ? buttonStyle : centeredButtonStyle}>Add Employee</Button>
             </div>
+
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+              sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+            >
+              <Box sx={style}>
+                <StepperContainer addUser={addUser} handleClose={handleClose} id={users.length} curUser={default_record} />
+              </Box>
+            </Modal>
+          </div>
+        </div>
       </div>
 
-     {showTable && <NewListTable users={users} setUsers={setUsers} page={page} setPage={setPage} filteredList={filteredList} handleEdit={handleEdit} />}
+      {showTable && <NewListTable users={users} setUsers={setUsers} page={page} setPage={setPage} filteredList={filteredList} handleEdit={handleEdit} />}
     </div>
   )
 }

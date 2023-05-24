@@ -130,6 +130,17 @@ export const NewListTable = ({ users, setUsers, page, setPage, filteredList, han
                         </li>
                     ))}
                 </ul>
+                {deleteMode && (
+                    <Modal open={deleteMode} onClose={handleCancel}>
+                        <div style={{ backgroundColor: 'white', padding: '2rem', width: '600px', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+                            <p align="center">Are you sure you want to delete this form data?</p>
+                            <div align="center">
+                                <Button onClick={handleConfirmDelete} color='inherit'>Yes</Button>
+                                <Button onClick={handleCancel} color='inherit'>No</Button>
+                            </div>
+                        </div>
+                    </Modal>
+                )}
             </div>
 
             <div className='pagination-container'>
