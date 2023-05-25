@@ -117,7 +117,7 @@ import moment from 'moment';
 
   return (
     <div className="container">
-    <h2>{isButtonClicked && 'Employee List'}</h2>
+    <h2>{showTable && 'Employee List'}</h2>
     <div>
 
       <div className='align-inline-box'>
@@ -136,14 +136,15 @@ import moment from 'moment';
                 </div>
               </div>
             </div>)}
-            <Button
+            {showTable && (<Button
               onClick={handleAddUserClick}
               variant="contained"
               style={isButtonClicked ? buttonStyle : centeredButtonStyle}
               className="btn-main"
             >
               Add Employee
-            </Button>
+            </Button>)}
+            
           </div>
 
           <Modal
