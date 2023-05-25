@@ -43,7 +43,7 @@ export const NewListTable = ({ users, setUsers, page, setPage, filteredList, han
 
     return (
         <>
-
+         
 
             {/* <TableContainer component={Paper}>
                 <Table>
@@ -144,7 +144,7 @@ export const NewListTable = ({ users, setUsers, page, setPage, filteredList, han
             </div>
 
             <div className='pagination-container'>
-               {users.length > 0 ? (<Pagination count={Math.ceil(users.length / ITEMS_PER_PAGE)} page={page} onChange={handleChangePage} style={{ color: '#303f9f', cursor: 'pointer' }} />): (<h1 >No Data Found</h1>)} 
+               {users && users.length && users.length > 0 ? (<Pagination count={Math.ceil(users.length / ITEMS_PER_PAGE)} page={page} onChange={handleChangePage} style={{ color: '#303f9f', cursor: 'pointer' }} />): (<h1 >No Data Found</h1>)} 
 
             </div>
         </>

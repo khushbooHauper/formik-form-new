@@ -5,8 +5,10 @@ import { Button, Modal, Box } from '@mui/material'
 import SearchFilter from './SearchFilterDebounce';
 import People from './people.png'
 import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
 
  function Layout() {
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [filter, setFilter] = useState("");
@@ -17,7 +19,7 @@ import moment from 'moment';
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const handleOpen = () => {
     setOpen(true);
-  };
+    };
 
   const handleClose = () => {
     setOpen(false);
@@ -92,11 +94,13 @@ import moment from 'moment';
   }, []);
 
   const handleAddUserClick = () => {
+    navigate('/modal');
     setOpen(true);
     setCurRecord(null);
     setShowTable(false); // Hide the table when "Add User" button is clicked
     setShowFilter(false);// Hide the filter when "Add User" button is clicked
     setIsButtonClicked(true);
+    
   };
   const buttonStyle = {
     background: '#303f9f',
@@ -161,7 +165,7 @@ import moment from 'moment';
       </div>
     </div>
 
-    {showTable && <NewListTable users={users} setUsers={setUsers} page={page} setPage={setPage} filteredList={filteredList} handleEdit={handleEdit} />}
+    {/* {showTable && <NewListTable users={users} setUsers={setUsers} page={page} setPage={setPage} filteredList={filteredList} handleEdit={handleEdit} />} */}
   </div>
   )
 }

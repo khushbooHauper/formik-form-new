@@ -244,8 +244,8 @@ h2 small {
   background-size:cover;
   background-position:center center;
   background-repeat:no-repeat;
-  height: 540px;
-  width: 1300px;
+  height: 550px;
+  /* width: 1200px; */
 }
 
 
@@ -302,3 +302,11 @@ h2 small {
 
   
 }
+
+.white{
+  background: #fff;
+  width: 800px;
+  margin: auto;
+  padding: 20px 30px;
+  
+ }

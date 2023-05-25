@@ -9,18 +9,19 @@ import { PersonalDetails } from './PersonalDetails';
 import { BankDetails } from './BankDetails';
 import { Education2 } from './Education2';
 import { Experience3 } from './Experience3';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const steps = ['PersonalDetails', 'BankDetails', 'Education', 'Experience'];
 
-export default function StepperContainer({ addUser, handleClose, id, curUser }) {
-
+export default function StepperContainer({ addUser, id, curUser, users, setUsers }) {
+    const navigate = useNavigate();
     ///+++++
     const [curRecord, setCurRecord] = React.useState(curUser || {})
     const [allowedNext, setAllowNext] = React.useState(false)
     const [activeStep, setActiveStep] = React.useState(0);
-    console.log("curRecord", curRecord)
+
 
     const onSuccess = React.useCallback((data, node) => {
 
@@ -51,25 +52,50 @@ export default function StepperContainer({ addUser, handleClose, id, curUser }) 
 
     ///+++++
 
+    // const handleNext = () => {
+    //     if (allowedNext) {
+    //         if (activeStep === steps.length - 1) {
+    //             const newUser = { ...curRecord, id: id + 1 };
+    //             setCurRecord(newUser);
+    //             addUser(newUser); // Pass newUser object directly
+    //             localStorage.setItem('users', JSON.stringify([...users, newUser])); // Store updated users array in local storage
+    //             navigate('/table');
+    //             console.log(curRecord)
+    //         } else {
+    //             setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    //         }
+    //     }
+    // };
     const handleNext = () => {
         if (allowedNext) {
-            if (activeStep === steps.length - 1) {
-                const newUser = { ...curRecord, id: id + 1 };
-                setCurRecord(newUser);
-                addUser(curRecord);
-
-            } else {
-                setActiveStep((prevActiveStep) => prevActiveStep + 1);
-            }
+          if (activeStep === steps.length - 1) {
+            const newUser = { ...curRecord, id: id + 1 };
+            addUser(newUser);
+            localStorage.setItem('users', JSON.stringify([...users, newUser]));
+            navigate('/table');
+            console.log(curRecord);
+          } else {
+            setActiveStep((prevActiveStep) => prevActiveStep + 1);
+          }
         }
+      };
+
+    const handleUpdate = () => {
+        const updatedUsers = users.map((user) =>
+            user.id === curRecord.id ? curRecord : user
+        );
+        setUsers(updatedUsers);
+        localStorage.setItem('users', JSON.stringify(updatedUsers));
+        navigate('/table');
     };
+
 
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
     return (
-        <Box sx={{ width: '100%', overflowY: 'auto', maxHeight: 500 }}>
+        <Box sx={{ width: '100%', overflowY: 'auto', maxHeight: 400 }}>
             <Stepper activeStep={activeStep}>
                 {steps.map((label, index) => {
                     const stepProps = {};
@@ -122,23 +148,22 @@ export default function StepperContainer({ addUser, handleClose, id, curUser }) 
                 </React.Fragment>
             ) : (
                 <React.Fragment>
-
-                    <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <Button
                             variant='contained'
                             disabled={activeStep === 0}
                             onClick={handleBack}
-                            sx={{ mr: 1 }}
+                            sx={{ mr: 1, mt: 4 }}
                         >
                             Back
                         </Button>
-                        <Box sx={{ flex: '1 1 auto' }} />
-
-
-                        <Button onClick={handleNext} disabled={!allowedNext} variant='contained'>
+                        <Button onClick={handleUpdate} disabled={!allowedNext} variant='outlined' sx={{ mr: 1, mt: 4 }}>
+                            Update
+                        </Button>
+                        <Button onClick={handleNext} disabled={!allowedNext} variant='contained' sx={{ mr: 1, mt: 4 }}>
                             {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                         </Button>
-                    </Box>
+                    </div>
                 </React.Fragment>
             )}
         </Box>
