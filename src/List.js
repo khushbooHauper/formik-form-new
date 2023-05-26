@@ -8,9 +8,9 @@ import SearchFilter from './SearchFilterDebounce';
 import { useNavigate } from 'react-router-dom';
 
 
-export const List = ({ users, setUsers, setCurRecord ,curRecord}) => {
+export const List = ({ users, setUsers, setCurRecord ,curRecord,setEditMode}) => {
 
-    const [editMode, setEditMode] = useState(false);
+    
     const [formData, setFormData] = useState(null);
     const [deleteMode, setDeleteMode] = useState(false);
     const [page, setPage] = useState(1);
@@ -86,6 +86,7 @@ export const List = ({ users, setUsers, setCurRecord ,curRecord}) => {
     const navigate = useNavigate();
 
     const handleEdit = useCallback((user) => {
+        setEditMode(true)
         navigate('/modal');
         setCurRecord(user);
         

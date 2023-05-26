@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 
 const steps = ['PersonalDetails', 'BankDetails', 'Education', 'Experience'];
 
-export default function StepperContainer({ addUser, id, curUser, users, setUsers }) {
+export default function StepperContainer({ addUser, id, curUser, users, setUsers,editMode }) {
     const navigate = useNavigate();
     ///+++++
     const [curRecord, setCurRecord] = React.useState(curUser || {})
@@ -52,36 +52,37 @@ export default function StepperContainer({ addUser, id, curUser, users, setUsers
 
     ///+++++
 
-    // const handleNext = () => {
-    //     if (allowedNext) {
-    //         if (activeStep === steps.length - 1) {
-    //             const newUser = { ...curRecord, id: id + 1 };
-    //             setCurRecord(newUser);
-    //             addUser(newUser); // Pass newUser object directly
-    //             localStorage.setItem('users', JSON.stringify([...users, newUser])); // Store updated users array in local storage
-    //             navigate('/table');
-    //             console.log(curRecord)
-    //         } else {
-    //             setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    //         }
-    //     }
-    // };
+    
     const handleNext = () => {
         if (allowedNext) {
           if (activeStep === steps.length - 1) {
-            const newUser = { ...curRecord, id: id + 1 };
-            addUser(newUser);
-            localStorage.setItem('users', JSON.stringify([...users, newUser]));
-            navigate('/table');
-            console.log(curRecord);
+            if (curUser) {
+              // Editing an existing user
+              const updatedUsers = users && users.map((user) =>
+                user.id === curRecord.id ? curRecord : user
+              );
+              setUsers(updatedUsers);
+              localStorage.setItem('users', JSON.stringify(updatedUsers));
+              navigate('/table');
+            } else {
+              // Adding a new user
+              const newUser = { ...curRecord, id: id + 1 };
+              addUser(newUser);
+              localStorage.setItem('users', JSON.stringify([...users, newUser]));
+              navigate('/table');
+              console.log(curRecord);
+            }
           } else {
             setActiveStep((prevActiveStep) => prevActiveStep + 1);
           }
         }
       };
+      
+    
+      
 
     const handleUpdate = () => {
-        const updatedUsers = users.map((user) =>
+        const updatedUsers =users && users.map((user) =>
             user.id === curRecord.id ? curRecord : user
         );
         setUsers(updatedUsers);
@@ -157,9 +158,10 @@ export default function StepperContainer({ addUser, id, curUser, users, setUsers
                         >
                             Back
                         </Button>
-                        <Button onClick={handleUpdate} disabled={!allowedNext} variant='outlined' sx={{ mr: 1, mt: 4 }}>
+                        {editMode && (<Button onClick={handleUpdate} disabled={!allowedNext} variant='outlined' sx={{ mr: 1, mt: 4 }}>
                             Update
-                        </Button>
+                        </Button>)}
+                        
                         <Button onClick={handleNext} disabled={!allowedNext} variant='contained' sx={{ mr: 1, mt: 4 }}>
                             {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                         </Button>

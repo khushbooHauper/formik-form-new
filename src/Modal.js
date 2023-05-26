@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import StepperContainer from './StepperContainer';
 
- function ModalForm({users,setUsers,curRecord,handleEdit}) {
+ function ModalForm({users,setUsers,curRecord,handleEdit,editMode}) {
  
   useEffect(() => {
     setUsers(users);
@@ -57,7 +57,7 @@ import StepperContainer from './StepperContainer';
     <div >
       <h2>Employee Form</h2>
       <div className='white'>
-    <StepperContainer addUser={addUser} id={users.length} curUser={default_record} setUsers={setUsers} users={users} handleEdit={handleEdit}/>
+    <StepperContainer addUser={addUser} id={users.length} curUser={default_record} setUsers={setUsers} users={users} handleEdit={handleEdit} editMode={editMode}/>
     </div>
     </div>
   )
