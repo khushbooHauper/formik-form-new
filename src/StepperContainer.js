@@ -14,7 +14,7 @@ import { Experience3 } from './Experience3';
 
 const steps = ['PersonalDetails', 'BankDetails', 'Education', 'Experience'];
 
-export default function StepperContainer({ addUser, handleClose, id, curUser }) {
+export default function StepperContainer({ addUser, handleClose, id, curUser,editMode ,users}) {
 
     ///+++++
     const [curRecord, setCurRecord] = React.useState(curUser || {})
@@ -57,7 +57,7 @@ export default function StepperContainer({ addUser, handleClose, id, curUser }) 
                 const newUser = { ...curRecord, id: id + 1 };
                 setCurRecord(newUser);
                 addUser(curRecord);
-
+                
             } else {
                 setActiveStep((prevActiveStep) => prevActiveStep + 1);
             }
@@ -123,19 +123,21 @@ export default function StepperContainer({ addUser, handleClose, id, curUser }) 
             ) : (
                 <React.Fragment>
 
-                    <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                    <Box sx={{ display: 'flex', justifyContent:'space-between'}}>
                         <Button
                             variant='contained'
                             disabled={activeStep === 0}
                             onClick={handleBack}
-                            sx={{ mr: 1 }}
+                            sx={{ mr: 1 ,mt:4}}
                         >
                             Back
                         </Button>
-                        <Box sx={{ flex: '1 1 auto' }} />
+                       
 
-
-                        <Button onClick={handleNext} disabled={!allowedNext} variant='contained'>
+                       {editMode && ( <Button  disabled={!allowedNext} variant='outlined'  sx={{ mr: 1 ,mt:4}}>
+                            Update
+                        </Button>)}
+                        <Button onClick={handleNext} disabled={!allowedNext} variant='contained'  sx={{ mr: 1 ,mt:4}}>
                             {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                         </Button>
                     </Box>

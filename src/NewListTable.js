@@ -6,9 +6,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import moment from 'moment';
 
 
-export const NewListTable = ({ users, setUsers, page, setPage, filteredList, handleEdit }) => {
+export const NewListTable = ({ users, setUsers, page, setPage, filteredList, handleEdit ,setEditMode,hasUsers,setHasUsers}) => {
 
-    const [editMode, setEditMode] = useState(false);
+    
     const [formData, setFormData] = useState(null);
     const [deleteMode, setDeleteMode] = useState(false);
 
@@ -37,67 +37,22 @@ export const NewListTable = ({ users, setUsers, page, setPage, filteredList, han
         setUsers(updatedUsers);
         setFormData(null);
         setDeleteMode(false);
+        localStorage.setItem('users', JSON.stringify(updatedUsers));
+        setHasUsers(false)
+        console.log(hasUsers, 'after delete')
+        
+       if(!hasUsers){
+        localStorage.clear('users');
+       
+       }
     }
 
 
 
     return (
         <>
-
-
-            {/* <TableContainer component={Paper}>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Id</TableCell>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Email</TableCell>
-                            <TableCell>Phone Number</TableCell>
-                            <TableCell>State</TableCell>
-                            <TableCell>bank</TableCell>
-                            <TableCell>ifsc</TableCell>
-                            <TableCell>course</TableCell>
-                            <TableCell>company</TableCell>
-                            <TableCell>Action</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {filteredList && filteredList.slice(startIndex, endIndex).map((user, index) => (
-                            <TableRow key={user.id}>
-                                <TableCell>{user.id}</TableCell>
-                                <TableCell>{user.PersonalDetails.firstName}  {user.PersonalDetails.lastName}</TableCell>
-                                <TableCell>{user.PersonalDetails.email}</TableCell>
-                                <TableCell>{user.PersonalDetails.phone}</TableCell>
-                                <TableCell>{user.PersonalDetails.state}</TableCell>
-                                <TableCell>{user.BankDetails.bank}</TableCell>
-                                <TableCell>{user.BankDetails.ifsc}</TableCell>
-                                <TableCell>{user.Education.education && user.Education.education.map((edu, index) => <p key={index}>{edu.courseName}</p>)}</TableCell>
-                                <TableCell>{user.Experience.experience && user.Experience.experience.map((exp, index) => <p key={index}>{exp.company}</p>)}</TableCell>
-                                <TableCell>
-                                    <EditIcon onClick={() => handleEdit(user)} style={{ color: '#303f9f' ,cursor:'pointer'}} />
-                                    <DeleteIcon onClick={() => handleDelete(user)} style={{ color: '#ab2424',cursor:'pointer' }} />
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-
-                {deleteMode && (
-                    <Modal open={deleteMode} onClose={handleCancel}>
-                        <div style={{ backgroundColor: 'white', padding: '2rem', width: '600px', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
-                            <p align="center">Are you sure you want to delete this form data?</p>
-                            <div align="center">
-                                <Button onClick={handleConfirmDelete}>Yes</Button>
-                                <Button onClick={handleCancel}>No</Button>
-                            </div>
-                        </div>
-                    </Modal>
-                )}
-
-            </TableContainer> */}
-            <div class="container">
-                
-                <ul class="responsive-table">
+             <div class="container">
+             <ul class="responsive-table">
                     <li class="table-header">
                         <div class="col col-1">Job Id</div>
                         <div class="col col-2">Employee Name</div>
