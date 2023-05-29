@@ -38,7 +38,7 @@ export const TablE = ({ users, setUsers, page, setPage, filteredList, handleEdit
         setFormData(null);
         setDeleteMode(false);
         localStorage.setItem('users', JSON.stringify(updatedUsers));
-
+        
     }
 
 

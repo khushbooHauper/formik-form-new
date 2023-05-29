@@ -121,22 +121,10 @@ function Layout() {
       
       ) 
       : (
+        
       <div className='first-part'>
-       
-        <div>
-
-          <div className='btn-centered'>
-            <div>
-              {showFilter && <SearchFilter setPage={setPage} filter={filter} setFilter={setFilter} className='searchfilter-margin-auto' />}
-            </div>
-
-            <ModaL isButtonClicked={isButtonClicked} open={open} handleClose={handleClose} users={users} setUsers={setUsers} addUser={addUser} id={users.length} curUser={default_record} editMode={editMode} handleAddUserClick={handleAddUserClick} />
-          </div>
-        </div>
-
-        {showTable && <TablE users={users} setUsers={setUsers} page={page} setPage={setPage} filteredList={filteredList} handleEdit={handleEdit} setEditMode={setEditMode} />}
-
-      </div>)}
+       <ModaL isButtonClicked={isButtonClicked} open={open} handleClose={handleClose} users={users} setUsers={setUsers} addUser={addUser} id={users.length} curUser={default_record} editMode={editMode} handleAddUserClick={handleAddUserClick} />
+     </div>)}
 
 
     </div>
