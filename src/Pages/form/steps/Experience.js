@@ -83,7 +83,7 @@ export const Experience = ({ formData, onError, onSuccess }) => {
                                         {values.experience.map((experience, index) => (
                                             <Grid container key={index} spacing={2}>
                                                 <Grid item xs={12}>
-                                                    <Typography variant='h6'>{values.experience[index].designation}</Typography>
+                                                    <Typography variant='h6'>{values.experience[index].designation || `Experience ${values.experience.length}`}</Typography>
                                                 </Grid>
                                                 <Grid item xs={6}>
                                                     <TextField
@@ -151,7 +151,7 @@ export const Experience = ({ formData, onError, onSuccess }) => {
                                                 </Grid>
                                                 <Grid item xs={2}>
                                                     {values.experience.length > 1 &&
-                                                        <IconButton onClick={(index) => {
+                                                        <IconButton onClick={() => {
                                                             const currentValues = [...values.experience];
                                                             currentValues.splice(index, 1);
                                                             setFieldValue("experience", currentValues);

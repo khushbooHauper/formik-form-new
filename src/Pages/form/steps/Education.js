@@ -74,7 +74,7 @@ export const Education = ({ formData, onError, onSuccess }) => {
                     {values.education && values.education.map((education, index) => (
                       <Grid container key={index} spacing={2}  >
                         <Grid item xs={12}>
-                          <Typography variant='h6'>{values.education[index].courseName}</Typography>
+                          <Typography variant='h6'>{values.education[index].courseName || `Education ${values.education.length}`}</Typography>
                         </Grid>
 
                         <Grid item xs={6}>
@@ -136,7 +136,7 @@ export const Education = ({ formData, onError, onSuccess }) => {
                         <Grid item xs={2}>
 
                           {values.education.length > 1 &&
-                            <IconButton onClick={(index) => {
+                            <IconButton onClick={() => {
                               const currentValues = [...values.education];
                               currentValues.splice(index, 1);
                               setFieldValue("education", currentValues);
