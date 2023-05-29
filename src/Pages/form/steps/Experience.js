@@ -45,7 +45,7 @@ const validationSchema = Yup.object().shape({
 const initialValues = {
     experience: [{ company: "", designation: "", joiningDate: "", leavingDate: "" }]
 };
-export const Experience3 = ({ formData, onError, onSuccess }) => {
+export const Experience = ({ formData, onError, onSuccess }) => {
     const formik = useFormik({
         initialValues: formData || initialValues,
         validationSchema: validationSchema,

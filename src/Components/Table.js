@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Modal, TextField, IconButton } from '@mui/material';
+import { useState } from 'react';
+import {  Button, Modal} from '@mui/material';
 import { Pagination } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import moment from 'moment';
+import '../css/Table.css'
+
+export const TablE = ({ users, setUsers, page, setPage, filteredList, handleEdit, setEditMode }) => {
 
 
-export const NewListTable = ({ users, setUsers, page, setPage, filteredList, handleEdit ,setEditMode,hasUsers,setHasUsers}) => {
-
-    
     const [formData, setFormData] = useState(null);
     const [deleteMode, setDeleteMode] = useState(false);
 
@@ -38,21 +38,15 @@ export const NewListTable = ({ users, setUsers, page, setPage, filteredList, han
         setFormData(null);
         setDeleteMode(false);
         localStorage.setItem('users', JSON.stringify(updatedUsers));
-        setHasUsers(false)
-        console.log(hasUsers, 'after delete')
-        
-       if(!hasUsers){
-        localStorage.clear('users');
-       
-       }
+
     }
 
 
 
     return (
         <>
-             <div class="container">
-             <ul class="responsive-table">
+            <div class="container">
+                <ul class="responsive-table">
                     <li class="table-header">
                         <div class="col col-1">Job Id</div>
                         <div class="col col-2">Employee Name</div>
@@ -99,7 +93,7 @@ export const NewListTable = ({ users, setUsers, page, setPage, filteredList, han
             </div>
 
             <div className='pagination-container'>
-               {users.length > 0 ? (<Pagination count={Math.ceil(users.length / ITEMS_PER_PAGE)} page={page} onChange={handleChangePage} style={{ color: '#303f9f', cursor: 'pointer' }} />): (<h1 >No Data Found</h1>)} 
+                {users.length > 0 ? (<Pagination count={Math.ceil(users.length / ITEMS_PER_PAGE)} page={page} onChange={handleChangePage} style={{ color: '#303f9f', cursor: 'pointer' }} />) : (<h1 >No Data Found</h1>)}
 
             </div>
         </>

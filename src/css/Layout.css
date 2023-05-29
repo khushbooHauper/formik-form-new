@@ -1,0 +1,19 @@
+.searchfilter-margin-auto{
+    margin:'auto'
+}
+.align-inline-box{
+    display: flex;
+    justify-content: space-between;
+    
+   }
+.btn-centered{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.first-part{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

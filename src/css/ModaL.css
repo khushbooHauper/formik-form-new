@@ -1,0 +1,42 @@
+.modalBoxStyle{
+    position: 'absolute';
+    top: '50%';
+    left: '50%';
+    transform: 'translate(-50%, -50%)';
+    width: 650px;
+    padding: 20px;
+    /* height: 490px; */
+    max-height: 400px;
+    overflow-y: auto;
+    display: 'flex';
+    align-items: 'center';
+    justify-content: 'center';
+    
+    background-color: white
+  };
+
+.modal-style{
+    display: 'flex';
+    justify-content: 'center';
+    align-items: 'center' ;
+}
+.add-employee-btn-div {
+    margin: auto;
+    text-align: center;
+  }
+  .buttonStyle{
+    background: '#303f9f';
+    cursor: 'pointer';
+    color: 'white';
+    padding: '8px 40px';
+    margin-left: '297px';
+  };
+
+  
+  .centeredButtonStyle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+  }

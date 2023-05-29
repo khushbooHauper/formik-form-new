@@ -35,7 +35,7 @@ const validationSchema = Yup.object().shape({
 const initialValues = {
   education: [{ courseName: "", university: "", percentage: "", passingYear: "" }]
 };
-export const Education2 = ({ formData, onError, onSuccess }) => {
+export const Education = ({ formData, onError, onSuccess }) => {
 
   const formik = useFormik({
     initialValues: formData || initialValues,

@@ -5,16 +5,16 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { PersonalDetails } from './PersonalDetails';
-import { BankDetails } from './BankDetails';
-import { Education2 } from './Education2';
-import { Experience3 } from './Experience3';
+import { PersonalDetails } from './steps/PersonalDetails';
+import { Education } from './steps/Education';
+import { Experience } from './steps/Experience';
+import { BankDetails } from './steps/BankDetails';
 
 
 
 const steps = ['PersonalDetails', 'BankDetails', 'Education', 'Experience'];
 
-export default function StepperContainer({ addUser, handleClose, id, curUser,editMode ,users}) {
+export default function StepperContainer({ addUser, handleClose, id, curUser,editMode ,users,setUsers}) {
 
     ///+++++
     const [curRecord, setCurRecord] = React.useState(curUser || {})
@@ -57,19 +57,31 @@ export default function StepperContainer({ addUser, handleClose, id, curUser,edi
                 const newUser = { ...curRecord, id: id + 1 };
                 setCurRecord(newUser);
                 addUser(curRecord);
-                
+                handleClose()
             } else {
                 setActiveStep((prevActiveStep) => prevActiveStep + 1);
             }
         }
     };
 
+      
+
+    const handleUpdate = () => {
+        const updatedUsers =users && users.map((user) =>
+            user.id === curRecord.id ? curRecord : user
+        );
+        setUsers(updatedUsers);
+        localStorage.setItem('users', JSON.stringify(updatedUsers));
+        handleClose()
+    };
+
+
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
     return (
-        <Box sx={{ width: '100%', overflowY: 'auto', maxHeight: 500 }}>
+        <Box>
             <Stepper activeStep={activeStep}>
                 {steps.map((label, index) => {
                     const stepProps = {};
@@ -97,12 +109,12 @@ export default function StepperContainer({ addUser, handleClose, id, curUser,edi
                                 onError={onError}
                                 formData={curRecord.BankDetails} />;
                         case 2:
-                            return <Education2
+                            return <Education
                                 onSuccess={onSuccess}
                                 onError={onError}
                                 formData={curRecord.Education} />;
                         case 3:
-                            return <Experience3
+                            return <Experience
                                 onSuccess={onSuccess}
                                 onError={onError}
                                 formData={curRecord.Experience}
@@ -114,16 +126,16 @@ export default function StepperContainer({ addUser, handleClose, id, curUser,edi
             </Box>
 
             {activeStep === steps.length ? (
-                <React.Fragment>
+                <>
                     <Typography sx={{ mt: 2, mb: 1 }}>
                         All steps completed - you&apos;re finished
                     </Typography>
 
-                </React.Fragment>
+             </>
             ) : (
-                <React.Fragment>
+                
 
-                    <Box sx={{ display: 'flex', justifyContent:'space-between'}}>
+                    <Box sx={{display:'flex',justifyContent:'space-between'}}>
                         <Button
                             variant='contained'
                             disabled={activeStep === 0}
@@ -134,14 +146,14 @@ export default function StepperContainer({ addUser, handleClose, id, curUser,edi
                         </Button>
                        
 
-                       {editMode && ( <Button  disabled={!allowedNext} variant='outlined'  sx={{ mr: 1 ,mt:4}}>
+                       {editMode && ( <Button onClick={handleUpdate} disabled={!allowedNext} variant='outlined'  sx={{ mr: 1 ,mt:4}}>
                             Update
                         </Button>)}
                         <Button onClick={handleNext} disabled={!allowedNext} variant='contained'  sx={{ mr: 1 ,mt:4}}>
                             {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                         </Button>
                     </Box>
-                </React.Fragment>
+                
             )}
         </Box>
     );

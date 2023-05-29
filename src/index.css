@@ -1,10 +1,11 @@
 body {
   font-family: 'lato', sans-serif;
-  /* background: rgb(206,246,249); */
-  background: linear-gradient(90deg, rgba(206,246,249,1) 22%, rgb(151, 216, 228) 100%);
+  background: rgb(206,246,249);
+  background: linear-gradient(90deg, rgba(206,246,249,1) 22%, rgba(81,208,233,1) 100%);
   color:#0a98a2;
   overflow-x: hidden;
-}
+ }
+ 
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -36,10 +37,7 @@ code {
 .education-fields {
   padding: 25px;
 }
-.align-inline-box{
-  display: flex;
-  justify-content: space-between;
- }
+
 
   .pagination-container {
     display: flex;
@@ -84,152 +82,11 @@ code {
   display: block;
 }
 
-
-
-
-/* table css starts here */
-
-
-
-
-
-
-.container {
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-h2 {
-  font-size: 26px;
-  margin: 20px 0;
-  text-align: center;
-}
-
-h2 small {
-  font-size: 0.5em;
-}
-
-.responsive-table li {
-  border-radius: 3px;
-  padding: 25px 30px;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 25px;
-}
-
-.responsive-table .table-header {
-  background-color: #33cdd8;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: white;
-}
-
-.responsive-table .table-row {
-  background-color: #ffffff;
-  box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
-}
-
-.responsive-table .col-1 {
-  flex-basis: 5%;
-}
-
-.responsive-table .col-2 {
-  flex-basis: 10%;
-}
-
-.responsive-table .col-3 {
-  flex-basis: 5%;
-}
-
-.responsive-table .col-4 {
-  flex-basis: 12%;
-}
-
-.responsive-table .col-5 {
-  flex-basis: 15%;
-}
-
-.responsive-table .col-6 {
-  flex-basis: 10%;
-}
-
-.responsive-table .col-7 {
-  flex-basis: 10%;
-}
-
-.responsive-table .col-8 {
-  flex-basis: 7%;
-}
-
-.responsive-table .col-9 {
-  flex-basis: 10%;
-}
-.responsive-table .col-10 {
-  flex-basis: 10%;
-}
-.responsive-table .col-11 {
-  flex-basis: 10%;
-}
-
-@media all and (max-width: 767px) {
-  .responsive-table .table-header {
-    display: none;
-  }
-
-  .responsive-table .table-row {
-    display: flex;
-    padding: 10px 0;
-  }
-
-  .responsive-table li {
-    display: block;
-  }
-
-  .responsive-table .col {
-    flex-basis: 100%;
-  }
-
-  .responsive-table .col {
-    display: flex;
-    padding: 10px 0;
-  }
-
-  .responsive-table .col:before {
-    color: #6C7A89;
-    padding-right: 10px;
-    content: attr(data-label);
-    flex-basis: 50%;
-    text-align: right;
-  }
-}
-
-
-/* add user centered button conditional style class */
-
-.centered-button {
-  display: block;
-  margin: 0 auto;
-}
-
-
-
-
-
-
-
-
-
-
-
 /* homepage styling */
 
 
 
-.header {
+/* .header {
   background-color:#333333;
 }
 
@@ -301,4 +158,4 @@ h2 small {
   }
 
   
-}
+} */
